@@ -21,6 +21,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Set up CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: java 
+
     - name: Build with Gradle
       run: gradle build
 
