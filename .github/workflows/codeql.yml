@@ -8,7 +8,7 @@ on:
 
 jobs:
   analyze:
-    name: Analyze java
+    name: Analyze java-kotlin
     # Runner size impacts CodeQL analysis time. To learn more, please see:
     #   - https://gh.io/recommended-hardware-resources-for-running-codeql
     #   - https://gh.io/supported-runners-and-hardware-resources
@@ -50,12 +50,11 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
-        languages: | 
-          - java
+        languages: java-kotlin
         build-mode: none
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
-        category: "/language:java"
+        category: "/language:java-kotlin"
         
