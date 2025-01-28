@@ -43,4 +43,4 @@ jobs:
       run: |
         # nohup java -javaagent:"./raspdemo/rasp/rasp/rasp.jar" --add-opens java.base/jdk.internal.loader=ALL-UNNAMED -jar ./raspdemo/build/libs/raspdemo-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
         # echo "Application is running"
-        nohup gradle bootRun
+        nohup gradle bootRun > app.log 2>&1 &
