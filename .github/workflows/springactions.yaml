@@ -24,7 +24,7 @@ jobs:
     - name: Set up CodeQL
       uses: github/codeql-action/init@v3
       with:
-        languages: java 
+        languages: java-kotlin
 
     - name: Build with Gradle
       run: gradle build
@@ -32,12 +32,15 @@ jobs:
     - name: Run Tests
       run: gradle test
 
-    - name: Run CodeQL analysis
+    - name: Perform CodeQL Analysis
       if: always()
       uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:java-kotlin"
+        build-mode: none
 
     - name: Run the Application
       run: |
         # nohup java -javaagent:"./raspdemo/rasp/rasp/rasp.jar" --add-opens java.base/jdk.internal.loader=ALL-UNNAMED -jar ./raspdemo/build/libs/raspdemo-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
         # echo "Application is running"
-        gradle bootRun
+        nohup gradle bootRun
