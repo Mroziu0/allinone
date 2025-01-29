@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.2'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id "io.snyk.gradle.plugin.snykplugin" version '0.7.0'
 }
 
 group = 'com.rasp.example'
@@ -14,11 +15,21 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'commons-collections:commons-collections:3.2.2' // Luk bezpieczeństwa CVE-2015-6420
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1' // Luk bezpieczeństwa CVE-2020-14782
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+snyk {
+	api = 'dd46e15b-b9b2-45c2-ab5c-4be30af2d477'
+    arguments = '--all-sub-projects'
+    severity = 'low'
+    autoDownload = true
 }

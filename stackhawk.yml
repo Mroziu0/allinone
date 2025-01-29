@@ -1,0 +1,7 @@
+app:
+  # -- An applicationId obtained from the StackHawk platform. --
+  applicationId: 3b4ec978-6762-4e0a-9f34-240af14a2cd6 # (required)
+  # -- The environment for the applicationId defined in the StackHawk platform. --
+  env: Development # (required)
+  # -- The url of your application to scan --
+  host: https://supreme-happiness-wr7wrx9q4j7hg55w-8080.app.github.dev

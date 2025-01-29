@@ -26,6 +26,19 @@ jobs:
       with:
         languages: java-kotlin
 
+    - name: Run Snyk Test
+      uses: snyk/actions/python@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+    - name: Run Snyk to check for vulnerabilities
+      if: always()
+      uses: snyk/actions/python@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        command: monitor
+
     - name: Build with Gradle
       run: gradle build
 
