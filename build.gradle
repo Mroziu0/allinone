@@ -1,8 +1,7 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.2'
+	id 'org.springframework.boot' version '3.4.2'
 	id 'io.spring.dependency-management' version '1.1.7'
-	id "io.snyk.gradle.plugin.snykplugin" version '0.7.0'
 }
 
 group = 'com.rasp.example'
@@ -16,20 +15,18 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'commons-collections:commons-collections:3.2.2' // Luk bezpieczeństwa CVE-2015-6420
+	// implementation 'org.springframework.boot:spring-boot-starter-parent:2.7.2'
+    // implementation 'commons-collections:commons-collections:3.2.2' // Luk bezpieczeństwa CVE-2015-6420
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'javax.xml.bind:jaxb-api:2.3.1' // Luk bezpieczeństwa CVE-2020-14782
+    // implementation 'javax.xml.bind:jaxb-api:2.3.1' // Luk bezpieczeństwa CVE-2020-14782
+	// implementation 'io.springfox:springfox-swagger2:3.0.0'
+	// implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	// implementation 'io.springfox:springfox-boot-starter:3.0.0' // Użyj najnowszej wersji
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
-}
-
-snyk {
-	api = 'dd46e15b-b9b2-45c2-ab5c-4be30af2d477'
-    arguments = '--all-sub-projects'
-    severity = 'low'
-    autoDownload = true
 }
