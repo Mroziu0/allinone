@@ -15,13 +15,9 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	// implementation 'org.springframework.boot:spring-boot-starter-parent:2.7.2'
-    // implementation 'commons-collections:commons-collections:3.2.2' // Luk bezpieczeństwa CVE-2015-6420
+    implementation 'commons-collections:commons-collections:3.2.2' // Luk bezpieczeństwa CVE-2015-6420
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    // implementation 'javax.xml.bind:jaxb-api:2.3.1' // Luk bezpieczeństwa CVE-2020-14782
-	// implementation 'io.springfox:springfox-swagger2:3.0.0'
-	// implementation 'io.springfox:springfox-swagger-ui:3.0.0'
-	// implementation 'io.springfox:springfox-boot-starter:3.0.0' // Użyj najnowszej wersji
+    implementation 'javax.xml.bind:jaxb-api:2.3.1' // Luk bezpieczeństwa CVE-2020-14782
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
