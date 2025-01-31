@@ -27,13 +27,13 @@ jobs:
         languages: java-kotlin
 
     - name: Run Snyk Test
-      uses: snyk/actions/python@master
+      uses: snyk/actions/gradle-jdk17@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
     - name: Run Snyk to check for vulnerabilities
       if: always()
-      uses: snyk/actions/python@master
+      uses: snyk/actions/gradle-jdk17@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
