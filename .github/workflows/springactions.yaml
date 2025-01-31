@@ -26,9 +26,10 @@ jobs:
       with:
         languages: java-kotlin
 
-    - name: Run Snyk Test
+    - name: Setup Snyk
       # uses: snyk/actions/gradle-jdk17@master
       uses: snyk/actions/setup@master
+    - name: Run Snyk Test
       run: snyk test --all-projects || true
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
