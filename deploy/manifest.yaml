@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: your-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: allinone
+  template:
+    metadata:
+      labels:
+        app: allinone
+    spec:
+      containers:
+      - name: allinone
+        image: mroziu86/allinone:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: allinone-service
+spec:
+  selector:
+    app: allinone
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
