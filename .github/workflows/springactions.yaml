@@ -21,29 +21,32 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Set up CodeQL
-      uses: github/codeql-action/init@v3
-      with:
-        languages: java-kotlin
-
-    - name: Run Snyk Test
-      uses: snyk/actions/python@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-    - name: Run Snyk to check for vulnerabilities
-      if: always()
-      uses: snyk/actions/python@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        command: monitor
-
     - name: Build with Gradle
       run: gradle build
 
     - name: Run Tests
       run: gradle test
+
+    - name: Set up CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: java-kotlin
+
+    - name: Setup Snyk
+      # uses: snyk/actions/gradle-jdk17@master
+      uses: snyk/actions/setup@master
+    - name: Run Snyk Test
+      run: snyk test --all-projects || true
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+    - name: Run Snyk to check for vulnerabilities
+      if: always()
+      uses: snyk/actions/gradle-jdk17@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        command: monitor
 
     - name: Perform CodeQL Analysis
       if: always()
