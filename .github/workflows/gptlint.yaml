@@ -1,0 +1,32 @@
+name: GPTLint Check
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  gptlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          working-directory: js
+
+      - name: Install dependencies
+        run: |
+          cd js
+          npm install gptlint
+
+      - name: Run GPTLint
+        run: |
+          cd js
+          npx gptlint src
