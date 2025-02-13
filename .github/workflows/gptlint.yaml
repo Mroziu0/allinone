@@ -19,14 +19,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          working-directory: js
+          working-directory: gptlint
 
       - name: Install dependencies
         run: |
-          cd js
+          cd gptlint
           npm install gptlint
 
       - name: Run GPTLint
         run: |
-          cd js
+          cd gptlint
           npx gptlint src
